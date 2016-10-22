@@ -13,8 +13,9 @@ Use the username '123456' and the password '1234', otherwise nothing much will a
 * Copy the service folder to the root of your web server.
 * Amend the settings in service/inc/settings.inc accordingly
 * Ensure the service/db folder is write-able by your web server.
-* Remember to setuup and configure Tropo as appropriate
 * Ensure the service/recording.php script has write access to the media folder specific in settings
+
+* Remember to setup and configure Tropo as appropriate. This includes preparing the callback as tropo_in.php?uri=start
 
 You may test the install with the Vokda virtual phone type typing
 
