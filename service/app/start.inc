@@ -1,7 +1,6 @@
 <?php
 
-$v->registerState('start', function() {
-global $v;
+function generateUsername($v) {
 
 	$options = array("attempts" => 3, "bargein" => true, "choices" => "[6 DIGITS]", "name" => "username", "timeout" => 5);
 		
@@ -10,8 +9,14 @@ global $v;
 		
 	// Tell Tropo what to do when the user has entered input, or if there is an error.
 	$v->tropo->on(array("event" => "continue", "next" => $v->getStateURL("username")));
-	//$v->tropo->on(array("event" => "continue", "next" => "test1.php?uri=username", "say" => "An error has occured."));
-	
+}
+
+
+$v->registerState('start', function() {
+global $v;
+
+	generateUsername($v);
+
 	// Render the JSON for the Tropo WebAPI to consume.
 	return $v->tropo->RenderJson();
 	

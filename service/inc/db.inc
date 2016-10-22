@@ -14,7 +14,7 @@ class VDB {
 
 	public function getRecord($id) {
 		vlog("Get record $id from " . $this->folder);
-		$data = file_get_contents($this->folder . trim($id));
+		$data = @file_get_contents($this->folder . trim($id));
 
 		vlog("  Record data : $data");
 		return json_decode($data);

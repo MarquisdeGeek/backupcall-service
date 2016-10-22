@@ -8,13 +8,19 @@ global $v;
 	$udb = new VDB('users');
 	$user_record = $udb->getRecord($username);
 
-	// TODO Handle case where user doesn't exist
-	$v->tropo->say("Thank you ". $user_record->name);
+	if (!$user_record) {
+		$v->tropo->say("I didn't get that. Please re-enter your number");
+		generateUsername($v);
 
-	$db = new VDB('calls');
-	$db->setRecord($v->getCallID(), array('user'=>$username));
+	} else {
 
-	generatePasscode($v);
+		$v->tropo->say("Thank you ". $user_record->name);
+
+		$db = new VDB('calls');
+		$db->setRecord($v->getCallID(), array('user'=>$username));
+
+		generatePasscode($v);
+	}
 
 	return $v->tropo->RenderJson();
 });
